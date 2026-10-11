@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FloraCare · Plant Health &amp; Biology Lab</title>
+  <meta name="description" content="An interactive plant biology and rule-based plant health assessment lab. Explore photosynthesis, leaf structure, and plant care. Add a leaf photo and select symptoms to get a preliminary assessment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!--  NAVIGATION  -->
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#dashboard" aria-label="FloraCare home">
+      <svg class="brand__logo" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="16" fill="#294B38"/>
+        <path d="M16 25V13" stroke="#EAF0E6" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M16 15C16 9 20 7 24 7c0 5-3 8-8 8Z" fill="#B7BE91"/>
+        <path d="M16 19c0-4-3-6-7-6 0 4 2 6 7 6Z" fill="#8FA58B"/>
+      </svg>
+      <span class="brand__text"><strong>FloraCare</strong><small>Plant Health &amp; Biology Lab</small></span>
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+      <span class="sr-only">Toggle menu</span>
+      <span class="nav__bars" aria-hidden="true"></span>
+    </button>
+    <nav class="nav__links" id="navLinks" aria-label="Main">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#plant-health">Plant Health</a>
+      <a href="#biology-lab">Biology Lab</a>
+      <a href="#explorer">Photosynthesis</a>
+      <a href="#plant-care">Plant Care</a>
+      <span class="status"><i aria-hidden="true"></i>Local Demo</span>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO  -->
+<section class="hero" id="dashboard">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <h1>Understand your plants. Help them thrive.</h1>
+      <p class="lead">Explore plant health through biological observations and intelligent computer-based analysis.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#plant-health">Examine a Leaf</a>
+        <a class="btn btn--ghost" href="#biology-lab">Explore Plant Biology</a>
+      </div>
+      <ul class="indicators">
+        <li><span class="ind-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-5 3-7 8-4 13 1 2 3 3 4 5 1-2 3-3 4-5 3-5 1-10-4-13Z"/><path d="M12 8v10"/></svg></span>Biological observations</li>
+        <li><span class="ind-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16"/><circle cx="18" cy="12" r="2"/></svg></span>Rule-based assessment</li>
+        <li><span class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>Interactive learning</li>
+      </ul>
+    </div>
+
+    <!-- Botanical composition -->
+    <div class="hero__art" aria-hidden="true">
+      <svg viewBox="0 0 440 440" role="img">
+        <circle cx="220" cy="220" r="200" fill="#EAF0E6"/>
+        <circle cx="220" cy="220" r="150" fill="none" stroke="#D5DECE" stroke-dasharray="3 7"/>
+        <!-- main leaf -->
+        <path d="M120 330C100 200 190 90 340 80c10 130-60 240-220 250Z" fill="#294B38"/>
+        <path d="M120 330C200 250 270 170 340 80" fill="none" stroke="#B7BE91" stroke-width="3" stroke-linecap="round"/>
+        <g stroke="#8FA58B" stroke-width="2" stroke-linecap="round" fill="none">
+          <path d="M165 285l-5-60M200 252l-6-62M235 215l-4-55M270 170l-2-42"/>
+          <path d="M175 292l55 -12M212 258l58 -14M245 220l50 -14M280 178l40 -10"/>
+        </g>
+        <!-- small leaves -->
+        <path d="M100 340c-45-10-70-45-70-85 40 5 70 35 70 85Z" fill="#8FA58B"/>
+        <path d="M100 340c10-60 45-85 90-95-5 55-35 90-90 95Z" fill="#B7BE91"/>
+        <path d="M100 340l-30-40" stroke="#294B38" stroke-width="2" fill="none"/>
+        <!-- dew drop -->
+        <path d="M330 300c-14-20-22-30-22-42a22 22 0 0 1 44 0c0 12-8 22-22 42Z" fill="#fff" stroke="#8FA58B" stroke-width="2"/>
+        <!-- sun -->
+        <circle cx="90" cy="95" r="22" fill="#B7BE91"/>
+        <g stroke="#B7BE91" stroke-width="3" stroke-linecap="round"><path d="M90 58v-10M90 142v10M53 95H43M127 95h10M64 69l-7-7M116 121l7 7M116 69l7-7M64 121l-7 7"/></g>
+      </svg>
+      <span class="tag tag--a">Chlorophyll</span>
+      <span class="tag tag--b">Stomata</span>
+    </div>
+  </div>
+</section>
+
+<!--  PLANT HEALTH SCANNER -->
+<section class="section" id="plant-health" aria-labelledby="scanner-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="scanner-title">Plant Health Scanner</h2>
+      <p>Add a photo for reference, then select what you can see. The assessment uses <strong>your selected observations</strong>. The photo is not analysed by the app.</p>
+    </div>
+
+    <div class="card scanner">
+      <!-- LEFT: image -->
+      <div class="scanner__col">
+        <h3 class="col-title">Leaf photo</h3>
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" class="sr-only">
+          <div class="dropzone__empty" id="emptyState">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 52C10 30 24 14 52 12c1 22-10 38-40 40Z" fill="#EAF0E6" stroke="#8FA58B" stroke-width="2"/><path d="M12 52C26 38 38 26 52 12" stroke="#8FA58B" stroke-width="2" fill="none"/></svg>
+            <p class="dropzone__title">Drop a leaf photo here</p>
+            <p class="muted">JPG, PNG or WEBP. It stays on your device.</p>
+            <label class="btn btn--primary btn--sm" for="fileInput" tabindex="0" id="chooseLabel">Choose image</label>
+          </div>
+          <div class="dropzone__preview" id="previewWrap" hidden>
+            <img id="previewImg" alt="Preview of the selected leaf photo">
+          </div>
+        </div>
+        <p class="file-meta" id="fileMeta" hidden>
+          <span class="file-meta__name" id="fileName"></span>
+          <button type="button" class="link-btn" id="replaceBtn">Replace</button>
+          <button type="button" class="link-btn link-btn--danger" id="removeBtn">Remove</button>
+        </p>
+        <p class="msg msg--error" id="fileError" role="alert" hidden></p>
+      </div>
+
+      <!-- RIGHT: observations -->
+      <div class="scanner__col">
+        <h3 class="col-title">Observations</h3>
+        <form id="scanForm" novalidate>
+          <fieldset class="symptoms">
+            <legend>What do you notice on the plant?</legend>
+            <label class="chip"><input type="checkbox" name="symptom" value="yellowing"><span><b>Yellowing leaves</b><small>Green colour fading</small></span></label>
+            <label class="chip"><input type="checkbox" name="symptom" value="brownSpots"><span><b>Brown spots</b><small>Dark patches or dots</small></span></label>
+            <label class="chip"><input type="checkbox" name="symptom" value="wilting"><span><b>Wilting</b><small>Drooping, soft leaves</small></span></label>
+            <label class="chip"><input type="checkbox" name="symptom" value="holes"><span><b>Holes or visible damage</b><small>Chewed or torn areas</small></span></label>
+            <label class="chip"><input type="checkbox" name="symptom" value="whitePowder"><span><b>White powdery coating</b><small>Flour-like surface layer</small></span></label>
+            <label class="chip"><input type="checkbox" name="symptom" value="curling"><span><b>Curling leaves</b><small>Edges rolling or twisting</small></span></label>
+          </fieldset>
+
+          <div class="field">
+            <label for="plantType">Plant type <span class="muted">(optional)</span></label>
+            <select id="plantType">
+              <option value="">Select a plant</option>
+              <option value="Tomato">Tomato</option>
+              <option value="Rose">Rose</option>
+              <option value="Money plant">Money plant</option>
+              <option value="Mango">Mango</option>
+              <option value="Other / Unknown">Other / Unknown</option>
+            </select>
+          </div>
+
+          <p class="msg msg--warn" id="formMessage" role="alert" hidden></p>
+          <div class="btn-row">
+            <button type="submit" class="btn btn--primary" id="assessBtn">Assess Plant Health</button>
+            <button type="button" class="btn btn--ghost" id="clearFormBtn">Clear Assessment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="card result" id="resultCard" hidden aria-labelledby="resultTitle" tabindex="-1">
+      <div class="result__top">
+        <div>
+          <span class="badge" id="resultBadge">Preliminary observation</span>
+          <h3 id="resultTitle">Assessment</h3>
+          <p class="muted" id="resultMeta"></p>
+        </div>
+        <div class="result__thumb" id="resultThumb" hidden><img id="resultImg" alt="Leaf photo used for reference"></div>
+      </div>
+      <div class="chips-out" id="resultSymptoms" aria-label="Selected symptoms"></div>
+      <div class="result__grid">
+        <div>
+          <h4>Possible explanations</h4>
+          <div id="resultCauses"></div>
+        </div>
+        <div>
+          <h4>Suggested next steps</h4>
+          <ul class="steps-list" id="resultSteps"></ul>
+        </div>
+      </div>
+      <p class="combined" id="resultCombined" hidden></p>
+      <p class="disclaimer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        Symptoms can have more than one cause. This is an educational, rule-based result and not a definitive diagnosis. For a spreading problem, ask a local nursery or plant expert.</p>
+      <div class="btn-row">
+        <button type="button" class="btn btn--ghost" id="clearBtn">Clear Assessment</button>
+        <button type="button" class="btn btn--primary" id="anotherBtn">Try Another Observation</button>
+      </div>
+    </div>
+
+    <!-- SAMPLE CASES -->
+    <div class="samples" id="samples">
+      <div>
+        <h3>Explore Sample Cases</h3>
+        <p class="muted">Demonstration cases. They fill in symptoms for you. No image classifier is involved.</p>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--soft" data-sample="yellow">Yellow Leaf</button>
+        <button type="button" class="btn btn--soft" data-sample="spotted">Spotted Leaf</button>
+        <button type="button" class="btn btn--soft" data-sample="wilting">Wilting Plant</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIOLOGY LAB -->
+<section class="section section--tint" id="biology-lab" aria-labelledby="bio-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="bio-title">Biology Lab</h2>
+      <p>Four ideas that explain how a healthy leaf works, and what changes when it is stressed.</p>
+    </div>
+
+    <div class="lab-grid">
+      <div class="lab-cards">
+        <article class="card lab-card lab-card--wide">
+          <h3>Photosynthesis</h3>
+          <p>Green plants use <b>light energy</b>, <b>carbon dioxide</b> and <b>water</b> to make glucose (food) and release oxygen. <b>Chlorophyll</b> in the leaf captures the light.</p>
+          <p class="equation" aria-label="6 carbon dioxide plus 6 water gives glucose plus 6 oxygen">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</p>
+          <p class="muted">Simplified equation. It happens in chloroplasts, in the presence of light.</p>
+        </article>
+        <article class="card lab-card">
+          <h3>Chlorophyll</h3>
+          <p>This green pigment absorbs mostly red and blue light and reflects green, so leaves look green. If chlorophyll is lost, the leaf can turn yellow and make less food.</p>
+        </article>
+        <article class="card lab-card">
+          <h3>Transpiration</h3>
+          <p>Water evaporates from leaves through tiny pores called <b>stomata</b>. This loss helps pull water upward from the roots through the stem and also cools the leaf.</p>
+        </article>
+        <article class="card lab-card">
+          <h3>Plant stress</h3>
+          <p>Too little or too much water, poor light, missing nutrients, pests and disease-causing microbes can all strain a plant. Different stresses can look alike, so context matters.</p>
+        </article>
+      </div>
+
+      <figure class="card diagram">
+        <svg viewBox="0 0 420 480" role="img" aria-labelledby="diagTitle diagDesc">
+          <title id="diagTitle">Labelled diagram of a plant</title>
+          <desc id="diagDesc">A plant showing sunlight, leaves, stomata, stem, roots, carbon dioxide entering, oxygen leaving and water uptake.</desc>
+          <rect width="420" height="480" rx="14" fill="#fff"/>
+          <rect y="330" width="420" height="150" fill="#EAF0E6"/>
+          <path d="M0 330h420" stroke="#C9B79A" stroke-width="2" stroke-dasharray="6 5"/>
+          <!-- sun -->
+          <circle cx="62" cy="62" r="22" fill="#B7BE91"/>
+          <g stroke="#B7BE91" stroke-width="3" stroke-linecap="round"><path d="M62 28v-8M62 104v8M28 62h-8M96 62h8M38 38l-6-6M86 86l6 6M86 38l6-6M38 86l-6 6"/></g>
+          <path d="M92 90L150 140" stroke="#B88A42" stroke-width="2" stroke-dasharray="4 4"/>
+          <!-- stem -->
+          <path d="M210 330V170" stroke="#294B38" stroke-width="9" stroke-linecap="round"/>
+          <!-- leaves -->
+          <path d="M210 190C170 190 130 160 130 120c40 0 80 30 80 70Z" fill="#8FA58B"/>
+          <path d="M210 240c40 0 90-25 95-70-45 0-95 25-95 70Z" fill="#8FA58B"/>
+          <path d="M210 170c-25-35-15-75 25-100 25 40 5 85-25 100Z" fill="#294B38"/>
+          <path d="M210 170C215 140 225 105 235 70" stroke="#B7BE91" stroke-width="2" fill="none"/>
+          <!-- stomata zoom -->
+          <circle cx="330" cy="110" r="38" fill="#fff" stroke="#8FA58B" stroke-width="2"/>
+          <ellipse cx="319" cy="110" rx="9" ry="17" fill="#8FA58B"/>
+          <ellipse cx="341" cy="110" rx="9" ry="17" fill="#8FA58B"/>
+          <ellipse cx="330" cy="110" rx="3" ry="11" fill="#fff"/>
+          <path d="M296 145L262 205" stroke="#8FA58B" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <!-- roots -->
+          <path d="M210 330v50M210 380l-45 55M210 380l45 55M210 360l-70 35M210 360l70 35M210 400v50" stroke="#B7BE91" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <!-- gas + water arrows -->
+          <path d="M120 218l55 8" stroke="#737C72" stroke-width="2" marker-end="url(#arr)"/>
+          <path d="M330 232l-55-16" stroke="#737C72" stroke-width="2" marker-end="url(#arr)"/>
+          <path d="M100 420l55-30" stroke="#294B38" stroke-width="2" marker-end="url(#arr)"/>
+          <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#737C72"/></marker></defs>
+          <g font-family="Instrument Sans, system-ui, sans-serif" font-size="14" fill="#25342B">
+            <text x="20" y="150" font-weight="600">Sunlight</text>
+            <text x="16" y="214">CO₂ in</text>
+            <text x="312" y="256">O₂ out</text>
+            <text x="300" y="165" fill="#737C72" font-size="12">Stoma (pore)</text>
+            <text x="262" y="60" font-weight="600">Leaf: photosynthesis</text>
+            <text x="228" y="302">Stem: carries water up</text>
+            <text x="24" y="440">Water + minerals in</text>
+            <text x="232" y="468" font-weight="600">Roots</text>
+            <text x="14" y="322" fill="#737C72" font-size="12">Soil level</text>
+          </g>
+        </svg>
+        <figcaption>Water travels up from the roots, carbon dioxide enters through stomata, and leaves release oxygen.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!--  PHOTOSYNTHESIS EXPLORER  -->
+<section class="section" id="explorer" aria-labelledby="exp-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="exp-title">Photosynthesis Explorer</h2>
+      <p>Change the conditions and see which factor is most likely to be holding photosynthesis back.</p>
+    </div>
+    <div class="card explorer">
+      <div class="explorer__controls">
+        <fieldset class="seg" data-group="light">
+          <legend>Light availability</legend>
+          <label><input type="radio" name="light" value="low"><span>Low</span></label>
+          <label><input type="radio" name="light" value="medium" checked><span>Medium</span></label>
+          <label><input type="radio" name="light" value="high"><span>High</span></label>
+        </fieldset>
+        <fieldset class="seg" data-group="water">
+          <legend>Water availability</legend>
+          <label><input type="radio" name="water" value="low"><span>Low</span></label>
+          <label><input type="radio" name="water" value="adequate" checked><span>Adequate</span></label>
+        </fieldset>
+        <fieldset class="seg" data-group="co2">
+          <legend>Carbon dioxide availability</legend>
+          <label><input type="radio" name="co2" value="low"><span>Low</span></label>
+          <label><input type="radio" name="co2" value="adequate" checked><span>Adequate</span></label>
+        </fieldset>
+      </div>
+      <div class="explorer__out" aria-live="polite">
+        <div class="meter" id="expMeter" data-level="2" role="img" aria-label="Conditions indicator">
+          <i></i><i></i><i></i><i></i>
+        </div>
+        <h3 id="expLabel">Favourable conditions</h3>
+        <p id="expText"></p>
+        <p class="muted" id="expLimit"></p>
+        <p class="muted small">Educational simplification. It does not calculate real photosynthetic rates. In nature, light, water, CO₂, temperature and nutrients interact, and the scarcest factor tends to limit the process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANT CARE GUIDE  WATERING PLANNER  -->
+<section class="section" id="plant-care" aria-labelledby="care-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="care-title">Plant Care Guide</h2>
+      <p>General care basics for common plants, plus a simple watering planner. Treat both as starting points and observe your own plant.</p>
+    </div>
+
+    <!-- Care guide -->
+    <div class="card explorer">
+      <div class="explorer__controls">
+        <div class="field">
+          <label for="guidePlant">Choose a plant</label>
+          <select id="guidePlant"></select>
+        </div>
+      </div>
+      <div class="explorer__out" aria-live="polite">
+        <h3 id="careName"></h3>
+        <p id="careSummary"></p>
+        <div id="careDetails"></div>
+        <h4>Care tips</h4>
+        <ul class="steps-list" id="careTips"></ul>
+      </div>
+    </div>
+
+    <!-- Watering planner -->
+    <div class="card explorer care-gap">
+      <form id="planForm" class="explorer__controls" novalidate>
+        <h3>Watering Routine Planner</h3>
+        <div class="field">
+          <label for="planPlant">Plant</label>
+          <select id="planPlant"></select>
+        </div>
+        <div class="field">
+          <label for="planSeason">Season</label>
+          <select id="planSeason">
+            <option value="summer">Summer (hot, dry)</option>
+            <option value="monsoon">Monsoon (rainy)</option>
+            <option value="winter">Winter (cool)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="planPot">Pot size</label>
+          <select id="planPot">
+            <option value="small">Small (up to about 15 cm)</option>
+            <option value="medium" selected>Medium (about 20–30 cm)</option>
+            <option value="large">Large (30 cm or more)</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn btn--primary">Plan Watering</button>
+        </div>
+      </form>
+      <div class="explorer__out" aria-live="polite">
+        <p class="muted" id="planEmpty">Choose a plant, season and pot size, then press Plan Watering.</p>
+        <div id="planResult" hidden>
+          <span class="badge">General guideline</span>
+          <h3 id="planFreq"></h3>
+          <p id="planText"></p>
+          <h4>Before you water</h4>
+          <ul class="steps-list" id="planSteps"></ul>
+          <p class="muted small">This is an estimate, not a schedule. Weather, soil and plant size change real needs, so always check the soil first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER  -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <strong class="footer__brand">FloraCare</strong>
+      <p>Created for the Biology × Computer Science Exhibition.</p>
+    </div>
+    <p class="muted">For educational use only. FloraCare does not diagnose plant diseases or replace advice from a plant expert. No images or data leave your device.</p>
+    <p class="footer__ver">Version 1.0 · Local Demo</p>
+  </div>
+</footer>
+
+<div class="sr-only" id="liveRegion" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
